@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+/* === CSS VARIABLES (Your Existing + Enhanced Darkness) === */
+@theme inline {
+  /* Your existing shadcn variables (kept as-is) */
+  --background: #0b0b0c;
+  --foreground: #e4e4e7;
+
+  --muted: #1f1f1f;
+  --muted-foreground: #a1a1aa;
+
+  --popover: #111111;
+  --popover-foreground: #e4e4e7;
+
+  --card: #111111;
+  --card-foreground: #e4e4e7;
+
+  --border: #27272a;
+  --input: #3f3f46;
+  --ring: #4b5563;
+
+  --primary: #f4f4f5;
+  --primary-foreground: #09090b;
+
+  --secondary: #18181b;
+  --secondary-foreground: #fafafa;
+
+  --accent: #292524;
+  --accent-foreground: #fafafa;
+
+  --destructive: #7f1d1d;
+  --destructive-foreground: #fef2f2;
+
+  --radius: 0.5rem;
+
+  /* Enhanced Soulslike Tokens (Darker Focus) */
+  --color-void-950: #060606;        /* Even darker void */
+  --color-crypt-900: #0f0f0f;       /* Deeper crypt */
+  --color-ash-800: #1a1a1a;         /* Darker ash */
+  --color-ash-700: #262626;         /* Subtle ash variant */
+  
+  /* Your original colors (enhanced) */
+  --color-bone-100: #f8f6f0;
+  --color-dust-400: #a8a196;        /* Slightly darker dust */
+  --color-tarnished-500: #c5c5c5;   /* More muted tarnished */
+  --color-phantom-800: #2a2a2c;     /* Darker phantom */
+  
+  /* Additional darker variants */
+  --color-blood-700: #8b3a47;       /* Darker blood */
+  --color-spectral-400: #7aa3d9;    /* Muted spectral */
+  --color-shadow-600: #2d2d2d;      /* Deeper shadows */
+
+  /* Enhanced Ember Palette */
+  --color-ember-500: #a67c00;        /* Lighter ember */
+  --color-ember-600: #8b6914;        /* Your current ember */
+  --color-ember-700: #6d5010;        /* Darker ember */
+  --color-ember-bright: #d4af37;     /* Bright ember (tarnished gold) */
+  --color-ember-900: #4a3508;        /* Deepest ember */
+}
+
+/* === Body / Global Styles (Enhanced) === */
+html, body {
+  background-color: var(--color-void-950);  /* Using darker void */
+  color: var(--foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* === Enhanced Scrollbar Styling (Darker) === */
+*::-webkit-scrollbar {
+  width: 6px; 
+  height: 6px;
+}
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #5d4a1a, #3d1f12); /* Darker bronze gradient */
+  border-radius: 3px;
+  border: 1px solid var(--color-ash-800);
+}
+*::-webkit-scrollbar-track {
+  background: var(--color-void-950);  /* Darker track */
+}
+*::-webkit-scrollbar-corner {
+  background: var(--color-void-950);
+}
+
+/* === Your Existing Soulslike Utilities (Enhanced) === */
+
+/* Background utilities (darker variants) */
+@utility bg-grave { background-color: #0d0d0d }  /* Darker grave */
+@utility bg-fog { background-color: #141414 }    /* Darker fog */
+@utility bg-crypt { background-color: var(--color-crypt-900) }
+
+/* Additional darker backgrounds */
+@utility bg-void { background-color: var(--color-void-950) }
+@utility bg-ash { background-color: var(--color-ash-800) }
+@utility bg-ash-light { background-color: var(--color-ash-700) }
+
+/* Text color utilities (your existing + enhanced) */
+@utility text-bone { color: var(--color-bone-100) }
+@utility text-ember { color: var(--color-ember-600) }
+@utility text-dust { color: var(--color-dust-400) }
+@utility text-tarnished { color: var(--color-tarnished-500) }
+@utility text-phantom { color: var(--color-phantom-800) }
+@utility text-blood { color: var(--color-blood-700) }
+@utility text-spectral { color: var(--color-spectral-400) }
+
+
+/* Add this to your global.css */
+@layer utilities {
+  .bg-ember-bright { 
+    background-color: var(--color-ember-bright); 
+  }
+  
+  .text-ember-bright { 
+    color: var(--color-ember-bright); 
+  }
+  
+  .border-ember-bright { 
+    border-color: var(--color-ember-bright); 
+  }
+  
+  .hover\:bg-ember-bright:hover { 
+    background-color: var(--color-ember-bright); 
+  }
+}
+
+
+/* Border and ring (enhanced) */
+@utility border-ember { border-color: var(--color-ember-600) }
+@utility border-ash { border-color: var(--color-ash-800) }
+@utility border-crypt { border-color: var(--color-crypt-900) }
+@utility ring-crypt { ring-color: var(--color-crypt-900) }
+@utility ring-ember { ring-color: var(--color-ember-600) }
+
+/* Enhanced shadows & glows (darker focus) */
+@utility shadow-fog { box-shadow: 0 0 30px rgba(0,0,0,0.9) }      /* Deeper fog */
+@utility shadow-void { box-shadow: 0 0 40px rgba(6,6,6,0.95) }     /* Void shadow */
+@utility shadow-ember { box-shadow: 0 0 20px rgba(139,105,20,0.2) } /* Subtler ember */
+
+@utility glow-ember { text-shadow: 0 0 8px rgba(139,105,20,0.7) }
+@utility glow-spectral { text-shadow: 0 0 8px rgba(74,111,165,0.6) }
+@utility glow-bone { text-shadow: 0 0 4px rgba(244,241,230,0.4) }
+@utility glow-blood { text-shadow: 0 0 6px rgba(93,31,42,0.8) }
+
+/* Enhanced background gradients */
+@utility bg-gradient-sigil {
+  background: linear-gradient(to bottom, rgba(139,105,20,0.4), rgba(6,6,6,0.8));
+}
+@utility bg-gradient-void { 
+  background: linear-gradient(to bottom, var(--color-void-950), var(--color-crypt-900));
+}
+
+/* Enhanced glass effects (darker) */
+@utility glass-bone {
+  background-color: rgba(244,241,230,0.03);  /* More subtle */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+@utility glass-void {
+  background-color: rgba(6,6,6,0.8);         /* Darker glass */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Your existing transition (kept) */
+@utility transition-soul { transition: all 700ms ease-in-out }
+@utility transition-whisper { transition: all 400ms ease-out }
+@utility transition-fast { transition: all 150ms ease-out}
+
+/* Enhanced selection color (darker) */
+::selection {
+  background-color: rgba(139, 105, 20, 0.3);  /* Subtler selection */
+  color: var(--color-bone-100);
+}
+
+::-moz-selection {
+  background-color: rgba(139, 105, 20, 0.3);
+  color: var(--color-bone-100);
+}
+
+/* === Enhanced Focus States (Darker) === */
+*:focus-visible {
+  outline: 2px solid rgba(139,105,20,0.6);    /* More subtle outline */
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(139, 105, 20, 0.1);
+}
+

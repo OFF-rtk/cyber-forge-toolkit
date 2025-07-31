@@ -6,8 +6,6 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "type-check": "tsc --noEmit",
     "test": "vitest",
     "test:coverage": "vitest --coverage",
@@ -38,14 +36,10 @@
     "zustand-persist": "^0.4.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.4.1",
-    "husky": "^9.1.7",
     "shadcn-ui": "^0.9.5",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.5",

@@ -1,186 +1,400 @@
 @import "tailwindcss";
 
-/* === CSS VARIABLES (Your Existing + Enhanced Darkness) === */
 @theme inline {
-  /* Your existing shadcn variables (kept as-is) */
-  --background: #0b0b0c;
-  --foreground: #e4e4e7;
-
-  --muted: #1f1f1f;
-  --muted-foreground: #a1a1aa;
-
-  --popover: #111111;
-  --popover-foreground: #e4e4e7;
-
-  --card: #111111;
-  --card-foreground: #e4e4e7;
-
-  --border: #27272a;
-  --input: #3f3f46;
-  --ring: #4b5563;
-
-  --primary: #f4f4f5;
-  --primary-foreground: #09090b;
-
-  --secondary: #18181b;
-  --secondary-foreground: #fafafa;
-
-  --accent: #292524;
-  --accent-foreground: #fafafa;
-
-  --destructive: #7f1d1d;
-  --destructive-foreground: #fef2f2;
-
-  --radius: 0.5rem;
-
-  /* Enhanced Soulslike Tokens (Darker Focus) */
-  --color-void-950: #060606;        /* Even darker void */
-  --color-crypt-900: #0f0f0f;       /* Deeper crypt */
-  --color-ash-800: #1a1a1a;         /* Darker ash */
-  --color-ash-700: #262626;         /* Subtle ash variant */
+  /* === BALANCED TERMINAL BASE PALETTE === */
+  --color-editor-bg: #0f0f0f;           /* Softer black - not pure black */
+  --color-editor-surface: #1a1a1a;      /* Comfortable dark panels */
+  --color-editor-elevated: #252525;     /* Lighter modals/dropdowns */
+  --color-editor-sidebar: #1f1f1f;      /* Gentle sidebar */
+  --color-editor-border: #404040;       /* Visible but not harsh borders */
+  --color-editor-overlay: #2a2a2a;      /* Comfortable overlays */
   
-  /* Your original colors (enhanced) */
-  --color-bone-100: #f8f6f0;
-  --color-dust-400: #a8a196;        /* Slightly darker dust */
-  --color-tarnished-500: #c5c5c5;   /* More muted tarnished */
-  --color-phantom-800: #2a2a2c;     /* Darker phantom */
+  /* === READABLE TERMINAL TEXT === */
+  --color-editor-text-primary: #f0f0f0;     /* Softer white - easier on eyes */
+  --color-editor-text-secondary: #d0d0d0;   /* Comfortable light gray */
+  --color-editor-text-muted: #a0a0a0;       /* Readable muted text */
+  --color-editor-text-subtle: #707070;      /* Subtle but visible */
   
-  /* Additional darker variants */
-  --color-blood-700: #8b3a47;       /* Darker blood */
-  --color-spectral-400: #7aa3d9;    /* Muted spectral */
-  --color-shadow-600: #2d2d2d;      /* Deeper shadows */
-
-  /* Enhanced Ember Palette */
-  --color-ember-500: #a67c00;        /* Lighter ember */
-  --color-ember-600: #8b6914;        /* Your current ember */
-  --color-ember-700: #6d5010;        /* Darker ember */
-  --color-ember-bright: #d4af37;     /* Bright ember (tarnished gold) */
-  --color-ember-900: #4a3508;        /* Deepest ember */
-}
-
-/* === Body / Global Styles (Enhanced) === */
-html, body {
-  background-color: var(--color-void-950);  /* Using darker void */
-  color: var(--foreground);
-  font-feature-settings: "rlig" 1, "calt" 1;
-}
-
-/* === Enhanced Scrollbar Styling (Darker) === */
-*::-webkit-scrollbar {
-  width: 6px; 
-  height: 6px;
-}
-*::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #5d4a1a, #3d1f12); /* Darker bronze gradient */
-  border-radius: 3px;
-  border: 1px solid var(--color-ash-800);
-}
-*::-webkit-scrollbar-track {
-  background: var(--color-void-950);  /* Darker track */
-}
-*::-webkit-scrollbar-corner {
-  background: var(--color-void-950);
-}
-
-/* === Your Existing Soulslike Utilities (Enhanced) === */
-
-/* Background utilities (darker variants) */
-@utility bg-grave { background-color: #0d0d0d }  /* Darker grave */
-@utility bg-fog { background-color: #141414 }    /* Darker fog */
-@utility bg-crypt { background-color: var(--color-crypt-900) }
-
-/* Additional darker backgrounds */
-@utility bg-void { background-color: var(--color-void-950) }
-@utility bg-ash { background-color: var(--color-ash-800) }
-@utility bg-ash-light { background-color: var(--color-ash-700) }
-
-/* Text color utilities (your existing + enhanced) */
-@utility text-bone { color: var(--color-bone-100) }
-@utility text-ember { color: var(--color-ember-600) }
-@utility text-dust { color: var(--color-dust-400) }
-@utility text-tarnished { color: var(--color-tarnished-500) }
-@utility text-phantom { color: var(--color-phantom-800) }
-@utility text-blood { color: var(--color-blood-700) }
-@utility text-spectral { color: var(--color-spectral-400) }
-
-
-/* Add this to your global.css */
-@layer utilities {
-  .bg-ember-bright { 
-    background-color: var(--color-ember-bright); 
-  }
+  /* === REFINED ANSI COLORS === */
+  --color-warm-orange: #ff9500;          /* Warmer orange */
+  --color-warm-yellow: #ffcc00;          /* Softer yellow */
+  --color-warm-green: #32d74b;           /* Apple green - more pleasant */
+  --color-warm-blue: #40a9ff;            /* Modern blue-cyan */
+  --color-warm-purple: #bf5af2;          /* Softer purple */
+  --color-warm-coral: #ff6b6b;           /* Gentle red-coral */
   
-  .text-ember-bright { 
-    color: var(--color-ember-bright); 
-  }
+  /* === GENTLE TERMINAL STATE COLORS === */
+  --color-gentle-success: #28a745;       /* Professional green */
+  --color-gentle-warning: #ffc107;       /* Amber warning */
+  --color-gentle-error: #dc3545;         /* Standard error red */
+  --color-gentle-info: #17a2b8;          /* Info teal */
   
-  .border-ember-bright { 
-    border-color: var(--color-ember-bright); 
-  }
+  /* === TERMINAL SELECTION & HIGHLIGHTS === */
+  --color-selection: #2563eb40;          /* Blue selection with opacity */
+  --color-highlight: #374151;            /* Comfortable highlight */
+  --color-cursor: #f0f0f0;               /* Soft white cursor */
   
-  .hover\:bg-ember-bright:hover { 
-    background-color: var(--color-ember-bright); 
-  }
+  /* === ENHANCED CODE AESTHETIC TYPOGRAPHY === */
+  --font-primary: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  --font-secondary: 'Fira Code', 'JetBrains Mono', monospace;
+  --font-ui: 'IBM Plex Mono', 'JetBrains Mono', monospace;
+  --font-display: 'Space Mono', 'JetBrains Mono', monospace;
+  --font-body: 'Source Code Pro', 'JetBrains Mono', monospace;
+  --font-accent: 'Inter', system-ui, sans-serif;
+  
+  /* === FONT WEIGHTS FOR CODE AESTHETIC === */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* === LETTER SPACING FOR READABILITY === */
+  --letter-spacing-tight: -0.015em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.015em;
+  --letter-spacing-wider: 0.025em;
+  --letter-spacing-widest: 0.05em;
+  
+  /* === GENTLE TERMINAL SPACING & RADIUS === */
+  --radius-editor: 0.375rem;          /* 6px - gentle rounding */
+  --radius-editor-lg: 0.5rem;         /* 8px - comfortable rounding */
+  --spacing-editor: 1rem;             /* 16px - comfortable spacing */
+  --spacing-editor-lg: 1.5rem;        /* 24px - larger spacing */
 }
 
-
-/* Border and ring (enhanced) */
-@utility border-ember { border-color: var(--color-ember-600) }
-@utility border-ash { border-color: var(--color-ash-800) }
-@utility border-crypt { border-color: var(--color-crypt-900) }
-@utility ring-crypt { ring-color: var(--color-crypt-900) }
-@utility ring-ember { ring-color: var(--color-ember-600) }
-
-/* Enhanced shadows & glows (darker focus) */
-@utility shadow-fog { box-shadow: 0 0 30px rgba(0,0,0,0.9) }      /* Deeper fog */
-@utility shadow-void { box-shadow: 0 0 40px rgba(6,6,6,0.95) }     /* Void shadow */
-@utility shadow-ember { box-shadow: 0 0 20px rgba(139,105,20,0.2) } /* Subtler ember */
-
-@utility glow-ember { text-shadow: 0 0 8px rgba(139,105,20,0.7) }
-@utility glow-spectral { text-shadow: 0 0 8px rgba(74,111,165,0.6) }
-@utility glow-bone { text-shadow: 0 0 4px rgba(244,241,230,0.4) }
-@utility glow-blood { text-shadow: 0 0 6px rgba(93,31,42,0.8) }
-
-/* Enhanced background gradients */
-@utility bg-gradient-sigil {
-  background: linear-gradient(to bottom, rgba(139,105,20,0.4), rgba(6,6,6,0.8));
-}
-@utility bg-gradient-void { 
-  background: linear-gradient(to bottom, var(--color-void-950), var(--color-crypt-900));
+/* === BALANCED TERMINAL DOMINANCE === */
+:root {
+  --current-bg: var(--color-editor-bg);
+  --current-surface: var(--color-editor-surface);
+  --current-elevated: var(--color-editor-elevated);
+  --current-text: var(--color-editor-text-primary);
+  --current-text-secondary: var(--color-editor-text-secondary);
+  --current-text-muted: var(--color-editor-text-muted);
+  --current-border: var(--color-editor-border);
 }
 
-/* Enhanced glass effects (darker) */
-@utility glass-bone {
-  background-color: rgba(244,241,230,0.03);  /* More subtle */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-@utility glass-void {
-  background-color: rgba(6,6,6,0.8);         /* Darker glass */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+/* === TERMINAL-ENHANCED BASE STYLING === */
+body {
+  background-color: var(--current-bg);
+  color: var(--current-text);
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--letter-spacing-wide);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "liga" 1, "calt" 1;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  
+  /* Terminal-specific enhancements */
+  tab-size: 2;
+  font-variant-numeric: tabular-nums;
 }
 
-/* Your existing transition (kept) */
-@utility transition-soul { transition: all 700ms ease-in-out }
-@utility transition-whisper { transition: all 400ms ease-out }
-@utility transition-fast { transition: all 150ms ease-out}
-
-/* Enhanced selection color (darker) */
+/* Enhanced selection styling for terminal feel */
 ::selection {
-  background-color: rgba(139, 105, 20, 0.3);  /* Subtler selection */
-  color: var(--color-bone-100);
+  background-color: var(--color-selection);
+  color: var(--color-editor-text-primary);
 }
 
 ::-moz-selection {
-  background-color: rgba(139, 105, 20, 0.3);
-  color: var(--color-bone-100);
+  background-color: var(--color-selection);
+  color: var(--color-editor-text-primary);
 }
 
-/* === Enhanced Focus States (Darker) === */
-*:focus-visible {
-  outline: 2px solid rgba(139,105,20,0.6);    /* More subtle outline */
-  outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(139, 105, 20, 0.1);
+/* === REFINED SCROLLBAR STYLING - SUBTLE GREY === */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #606060 transparent; /* ✅ CHANGED: Grey scrollbar */
 }
 
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #606060; /* ✅ CHANGED: Grey scrollbar thumb */
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #808080; /* ✅ CHANGED: Lighter grey on hover */
+}
+
+/* === SUBTLE TERMINAL ANIMATIONS === */
+@keyframes terminal-scan {
+  0% { background-position: -100% 0; opacity: 0; }
+  50% { opacity: 0.6; }
+  100% { background-position: 100% 0; opacity: 0; }
+}
+
+@keyframes terminal-pulse {
+  0%, 100% { box-shadow: 0 0 3px currentColor; }
+  50% { box-shadow: 0 0 8px currentColor, 0 0 16px currentColor; }
+}
+
+@keyframes terminal-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(64, 169, 255, 0.3); }
+  50% { box-shadow: 0 0 12px rgba(64, 169, 255, 0.5), 0 0 24px rgba(64, 169, 255, 0.2); }
+}
+
+@keyframes slide-in-from-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-out-to-right {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes zoom-in-95 {
+  from { 
+    opacity: 0; 
+    transform: scale(0.95);
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-in-from-top-4 {
+  from { 
+    opacity: 0; 
+    transform: translateY(-16px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
+}
+
+@keyframes terminal-cursor {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* === REFINED TERMINAL UTILITIES === */
+
+/* Background colors */
+@utility bg-editor-surface { background-color: var(--color-editor-surface) }
+@utility bg-editor-elevated { background-color: var(--color-editor-elevated) }
+@utility bg-editor-sidebar { background-color: var(--color-editor-sidebar) }
+@utility bg-editor-overlay { background-color: var(--color-editor-overlay) }
+
+/* Terminal ANSI colors */
+@utility bg-warm-orange { background-color: var(--color-warm-orange) }
+@utility bg-warm-yellow { background-color: var(--color-warm-yellow) }
+@utility bg-warm-green { background-color: var(--color-warm-green) }
+@utility bg-warm-blue { background-color: var(--color-warm-blue) }
+@utility bg-warm-purple { background-color: var(--color-warm-purple) }
+@utility bg-warm-coral { background-color: var(--color-warm-coral) }
+
+/* Terminal state colors */
+@utility bg-gentle-success { background-color: var(--color-gentle-success) }
+@utility bg-gentle-warning { background-color: var(--color-gentle-warning) }
+@utility bg-gentle-error { background-color: var(--color-gentle-error) }
+@utility bg-gentle-info { background-color: var(--color-gentle-info) }
+
+/* Text colors */
+@utility text-warm-orange { color: var(--color-warm-orange) }
+@utility text-warm-yellow { color: var(--color-warm-yellow) }
+@utility text-warm-green { color: var(--color-warm-green) }
+@utility text-warm-blue { color: var(--color-warm-blue) }
+@utility text-warm-purple { color: var(--color-warm-purple) }
+@utility text-warm-coral { color: var(--color-warm-coral) }
+
+@utility text-gentle-success { color: var(--color-gentle-success) }
+@utility text-gentle-warning { color: var(--color-gentle-warning) }
+@utility text-gentle-error { color: var(--color-gentle-error) }
+@utility text-gentle-info { color: var(--color-gentle-info) }
+
+/* Border colors */
+@utility border-warm-orange { border-color: var(--color-warm-orange) }
+@utility border-warm-yellow { border-color: var(--color-warm-yellow) }
+@utility border-warm-green { border-color: var(--color-warm-green) }
+@utility border-warm-blue { border-color: var(--color-warm-blue) }
+@utility border-warm-purple { border-color: var(--color-warm-purple) }
+
+@utility border-gentle-success { border-color: var(--color-gentle-success) }
+@utility border-gentle-warning { border-color: var(--color-gentle-warning) }
+@utility border-gentle-error { border-color: var(--color-gentle-error) }
+@utility border-gentle-info { border-color: var(--color-gentle-info) }
+
+/* Typography utilities */
+@utility font-terminal-mono { 
+  font-family: var(--font-primary); 
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--letter-spacing-wide);
+  line-height: 1.4;
+}
+
+@utility font-terminal-ui { 
+  font-family: var(--font-ui); 
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+@utility font-code-medium { font-weight: var(--font-weight-medium); }
+@utility font-code-semibold { font-weight: var(--font-weight-semibold); }
+@utility font-code-bold { font-weight: var(--font-weight-bold); }
+
+/* Gentle glow effects */
+@utility glow-terminal-green { 
+  box-shadow: 0 0 6px rgba(50, 215, 75, 0.4), 0 0 12px rgba(50, 215, 75, 0.2);
+}
+@utility glow-terminal-cyan { 
+  box-shadow: 0 0 6px rgba(64, 169, 255, 0.4), 0 0 12px rgba(64, 169, 255, 0.2);
+}
+@utility glow-terminal-yellow { 
+  box-shadow: 0 0 6px rgba(255, 204, 0, 0.4), 0 0 12px rgba(255, 204, 0, 0.2);
+}
+@utility glow-terminal-red { 
+  box-shadow: 0 0 6px rgba(220, 53, 69, 0.4), 0 0 12px rgba(220, 53, 69, 0.2);
+}
+
+/* Comfortable spacing */
+@utility p-editor { padding: var(--spacing-editor) }
+@utility px-editor { padding-left: var(--spacing-editor); padding-right: var(--spacing-editor) }
+@utility py-editor { padding-top: var(--spacing-editor); padding-bottom: var(--spacing-editor) }
+
+/* Gentle border radius */
+@utility rounded-editor { border-radius: var(--radius-editor) }
+@utility rounded-editor-lg { border-radius: var(--radius-editor-lg) }
+
+@layer utilities {
+  /* Theme-aware utilities */
+  .bg-current-surface { background-color: var(--current-surface); }
+  .bg-current-elevated { background-color: var(--current-elevated); }
+  .text-current { color: var(--current-text); }
+  .text-current-secondary { color: var(--current-text-secondary); }
+  .text-current-muted { color: var(--current-text-muted); }
+  .border-current { border-color: var(--current-border); }
+  
+  /* Refined terminal window */
+  .terminal-window {
+    background: var(--color-editor-bg);
+    border: 1px solid var(--color-editor-border);
+    border-radius: var(--radius-editor);
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  }
+  
+  .terminal-titlebar {
+    background: var(--color-editor-sidebar);
+    border-bottom: 1px solid var(--color-editor-border);
+    padding: 0.5rem 1rem;
+  }
+  
+  /* Gentle transitions */
+  .terminal-transition {
+    transition: all 0.15s ease-out;
+  }
+  
+  /* Animation utilities */
+  .animate-terminal-glow { animation: terminal-glow 3s infinite; }
+  .animate-zoom-in-95 { animation: zoom-in-95 0.2s ease-out; }
+  .animate-slide-in-from-top-4 { animation: slide-in-from-top-4 0.3s ease-out; }
+  .animate-terminal-cursor { animation: terminal-cursor 1s infinite; }
+}
+
+/* === CUSTOM TERMINAL CURSOR STYLING - CLEAN WHITE === */
+
+/* Hide default cursor and create custom block cursor */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea {
+  caret-color: transparent;
+  position: relative;
+}
+
+/* ✅ CHANGED: Clean white cursor instead of orange */
+input[type="text"]:focus,
+input[type="email"]:focus, 
+input[type="password"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+  caret-color: var(--color-editor-text-primary); /* White cursor */
+  caret-shape: block; /* Modern browsers */
+}
+
+.terminal-input {
+  position: relative;
+}
+
+.terminal-input:focus::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 18px;
+  background-color: var(--color-editor-text-primary); /* ✅ CHANGED: White cursor */
+  animation: terminal-cursor 1s infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ✅ CHANGED: Terminal cursor for monospace fonts - now white */
+.font-terminal-mono:focus,
+.font-mono:focus {
+  caret-color: var(--color-editor-text-primary); /* White instead of orange */
+  caret-shape: block;
+}
+
+/* ✅ CHANGED: Custom cursor width for terminal feel - white */
+input:focus,
+textarea:focus {
+  caret-color: var(--color-editor-text-primary); /* White cursor */
+  /* For browsers that support it */
+  caret-shape: block;
+  /* Fallback styling */
+  outline: none;
+}
+
+/* ✅ CHANGED: Ensure cursor is visible on dark backgrounds - white */
+input,
+textarea {
+  caret-color: var(--color-editor-text-primary); /* White cursor by default */
+}
+
+/* ✅ CHANGED: Terminal-specific input styling - white */
+.terminal-input:focus {
+  caret-color: var(--color-editor-text-primary); /* White cursor */
+  caret-shape: block;
+}
+
+/* ✅ CHANGED: Enhanced cursor for better visibility - white */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+  caret-color: var(--color-editor-text-primary); /* White cursor */
+  /* Modern block cursor */
+  caret-shape: block;
+  /* Fallback for older browsers */
+  caret-width: 2px;
+}
+
+/* ✅ CHANGED: Specific styling for your terminal components - white */
+.font-terminal-mono:focus {
+  caret-color: var(--color-editor-text-primary) !important; /* White cursor */
+  caret-shape: block !important;
+}
+
+/* Blinking animation remains for any custom cursors */
+@keyframes terminal-cursor {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}

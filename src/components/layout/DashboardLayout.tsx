@@ -1,7 +1,6 @@
 'use client';
 
 import { TerminalNavbar } from '@/components/ui/TerminalNavbar';
-import { Terminal } from 'lucide-react';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -13,20 +12,6 @@ export default function MainLayout({ children }: MainLayoutProps) {
     { label: 'Components', href: '/components' },
     { label: 'Documentation', href: '/docs' },
     { label: 'Examples', href: '/examples' },
-    // ✅ ADD: Terminal button as nav item
-    { 
-      label: <Terminal size={18} className="text-warm-blue hover:text-warm-green transition-colors" />, 
-      href: '#',
-      onClick: (e: React.MouseEvent) => {
-        e.preventDefault();
-        // Trigger command palette
-        if (typeof window !== 'undefined' && (window as any).openCommandPalette) {
-          (window as any).openCommandPalette();
-        }
-      },
-      isButton: true, // Flag to identify this as a button
-      tooltip: 'Open Command Palette (⌘K)'
-    },
   ];
 
   return (

@@ -1,36 +1,208 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧪 Terminal UI System – React Component Library
 
-## Getting Started
+A modern developer-focused design system inspired by terminal aesthetics. Built with speed, reusability, and clear UX principles. Optimized for building dashboards and SaaS apps with a unique retro-modern feel.
 
-First, run the development server:
+## ✨ Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js** (App Router, TypeScript)
+- **Tailwind CSS v4** (custom theme)
+- **Zustand** (lightweight global state)
+- **React Hook Form** (form management + validation)
+
+---
+
+## 📦 Components
+
+### `TerminalButton`
+
+Props:
+
+- `label: string`
+- `onClick: () => void`
+- `variant?: 'primary' | 'ghost' | 'danger'`
+- `size?: 'sm' | 'base' | 'lg'`
+
+```tsx
+<TerminalButton
+  label="Execute"
+  onClick={() => console.log('Clicked')}
+  variant="primary"
+  size="base"
+/>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### `TerminalInput`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Props:
 
-## Learn More
+- `label: string`
+- `name: string`
+- `control: Control<any>`
+- `placeholder?: string`
+- `type?: string`
 
-To learn more about Next.js, take a look at the following resources:
+```tsx
+<TerminalFormInput
+  label="Username"
+  name="username"
+  control={control}
+  placeholder="Enter your username"
+/>
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### `TerminalSelect`
 
-## Deploy on Vercel
+Props:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `label: string`
+- `name: string`
+- `control: Control<any>`
+- `options: { label: string; value: string }[]`
+- `placeholder?: string`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```tsx
+<TerminalSelect
+  label="Environment"
+  name="env"
+  control={control}
+  options=[
+    { label: 'Production', value: 'prod' },
+    { label: 'Development', value: 'dev' },
+  ]
+/>
+```
+
+---
+
+### `TerminalTextarea`
+
+Props:
+
+- `label: string`
+- `name: string`
+- `control: Control<any>`
+- `placeholder?: string`
+
+```tsx
+<TerminalTextarea
+  label="Message"
+  name="message"
+  control={control}
+  placeholder="Type here..."
+/>
+```
+
+---
+
+### `TerminalNavbar`
+
+Props:
+
+- `floating?: boolean`
+
+```tsx
+<TerminalNavbar floating />
+```
+
+---
+
+### `TerminalBreadcrumb`
+
+Auto-detects route path and renders breadcrumb links with slashes.
+
+```tsx
+<TerminalBreadcrumb />
+```
+
+---
+
+### `TerminalCard`
+
+Wrap content with a styled card surface.
+
+```tsx
+<TerminalCard>
+  <p>Hello from the terminal card</p>
+</TerminalCard>
+```
+
+---
+
+### `TerminalContainer`
+
+Wraps page content with padding and max-width constraints.
+
+```tsx
+<TerminalContainer>
+  <Dashboard />
+</TerminalContainer>
+```
+
+---
+
+### `TerminalTabs`
+
+Props:
+
+- `tabs: { id: string; label: string; content: ReactNode }[]`
+- `defaultTab?: string`
+
+```tsx
+<TerminalTabs
+  defaultTab="overview"
+  tabs=[
+    { id: 'overview', label: 'Overview', content: <Overview /> },
+    { id: 'settings', label: 'Settings', content: <Settings /> },
+  ]
+/>
+```
+
+---
+
+### `TerminalAccordion`
+
+Props:
+
+- `items: { id: string; title: string; content: string }[]`
+
+```tsx
+<TerminalAccordion
+  items=[
+    { id: 'faq1', title: 'What is this?', content: 'A terminal UI library.' },
+    { id: 'faq2', title: 'How do I use it?', content: 'Clone the repo and run dev.' },
+  ]
+/>
+```
+
+---
+
+### `TerminalBadge`
+
+Props:
+
+- `text?: string`
+- `dot?: boolean`
+- `color?: string`
+
+```tsx
+<TerminalBadge text="Active" />
+<TerminalBadge dot color="green" />
+```
+
+---
+
+## 🛠 Setup Instructions
+
+```bash
+git clone https://github.com/OFF-rtk/cyber-forge-toolkit.git
+cd cyber-forge-toolkit
+pnpm install
+pnpm run dev
+```
+
+---
+

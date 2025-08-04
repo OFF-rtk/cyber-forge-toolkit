@@ -3,11 +3,11 @@
 import { useState, useEffect } from 'react';
 import { TerminalBreadcrumb } from '@/components/ui/TerminalBreadcrumb';
 import { TerminalContainer } from '@/components/ui/TerminalContainer';
-import { TerminalCard } from '@/components/ui/TerminalCard';
+import TerminalCard from '@/components/ui/TerminalCard';
 import { TerminalFormInput } from '@/components/ui/TerminalFormInput';
 import { TerminalSelect } from '@/components/ui/TerminalSelect';
 import { TerminalTextarea } from '@/components/ui/TerminalTextarea';
-import { TerminalButton } from '@/components/ui/TerminalButton';
+import TerminalButton from '@/components/ui/TerminalButton';
 import { TerminalBadge } from '@/components/ui/TerminalBadge';
 import { TerminalCommandPalette } from '@/components/ui/TerminalCommandPalette';
 import { TerminalTooltip } from '@/components/ui/TerminalTooltip';

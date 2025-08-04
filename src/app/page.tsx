@@ -1,51 +1,62 @@
-'use client';
+"use client";
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import TerminalCard from '../components/ui/TerminalCard.tsx'
+import {TrendingUp, Terminal} from 'lucide-react'
 
 export default function HomePage() {
   const router = useRouter();
 
   // Auto-redirect to dashboard after component mounts
-  useEffect(() => {
+  /*useEffect(() => {
     router.push('/dashboard');
-  }, [router]);
+  }, [router]);*/
+  
 
+  const handleSystemCheck = () => {
+    setTimeout(() => {
+      console.log('Helloo')
+    }, 2000);
+  }
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
-      <div className="text-center space-y-6">
-        {/* Loading state while redirecting */}
-        <div className="flex items-center justify-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-warm-blue animate-pulse"></div>
-          <span className="font-terminal-ui font-code-medium text-current">
-            Terminal UI
-          </span>
-        </div>
-        
-        <p className="font-terminal-mono text-sm text-current-muted">
-          Redirecting to dashboard...
-        </p>
-
-        {/* Fallback manual link */}
-        <div className="pt-4">
-          <Link 
-            href="/dashboard"
-            className="font-terminal-mono text-xs text-warm-blue hover:text-warm-green transition-colors underline"
-          >
-            Click here if redirect doesn't work
-          </Link>
-        </div>
-
-        {/* Terminal-style loading animation */}
-        <div className="flex justify-center">
-          <div className="flex gap-1">
-            <div className="w-1 h-1 bg-warm-blue rounded-full animate-pulse"></div>
-            <div className="w-1 h-1 bg-warm-blue rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-            <div className="w-1 h-1 bg-warm-blue rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+    <div className="flex flex-col lg:flex-row justify-around items-center mx-auto">
+      <TerminalCard
+        title="Revenue Growth"
+        value="$2.4M"
+        description="23% increase from last quarter"
+        status="success"
+        icon={<TrendingUp className="w-4 h-4" />}
+        showHeader={true}
+        compact={false}
+      />  
+      <TerminalCard
+        title="Database Connection"
+        value="3/5 nodes"
+        description="2 nodes experiencing connectivity issues. Auto-recovery in progress."
+        status="warning"
+        showHeader={true}
+        compact={true}
+        onClick={() => handleSystemCheck()}
+      /> 
+      <TerminalCard
+        title="Terminal Session"
+        status="info"
+        icon={<Terminal className="w-4 h-4" />}
+        showHeader={true}
+        compact={false}
+      >
+        <div className="space-y-2">
+          <div className="font-terminal-mono text-xs text-current-muted">
+            Last command: npm run build
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-gentle-success rounded-full"></div>
+              <span className="text-sm">Build completed successfully</span>
           </div>
         </div>
-      </div>
+      </TerminalCard>
     </div>
   );
 }

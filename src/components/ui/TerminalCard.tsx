@@ -1,128 +1,142 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { forwardRef, ReactNode } from "react";
-import { Terminal } from "lucide-react";
+import React, { forwardRef } from 'react';
+import { Terminal } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-interface TerminalCardProps {
-    title?: string
-    value?: string | number
-    description?: string
-    status?: 'success' | 'warning' | 'error' | 'info' | 'default';
-    icon?: ReactNode
-    children?: ReactNode
-    className?: string
-    showHeader?: boolean
-    compact?: boolean
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  title?: string;
+  value?: string | number;
+  description?: string;
+  status?: 'success' | 'warning' | 'error' | 'info' | 'default';
+  icon?: React.ReactNode;
+  children?: React.ReactNode;
+  showHeader?: boolean;
+  compact?: boolean;
 }
 
-export const TerminalCard = forwardRef<HTMLDivElement, TerminalCardProps>(
-    ({
-        title,
-        value,
-        description,
-        status = 'default',
-        icon,
-        children,
-        className,
-        showHeader = true,
-        compact = false,
-        ...props
-    }, ref) => {
-
-        const getStatusStyles = () => {
-            switch (status) {
-                case 'success':
-                    return {
-                        border: 'border-gentle-success',
-                        header: 'text-gentle-success bg-editor-elevated',
-                        indicator: 'bg-gentle-success'
-                    };
-                case 'warning':
-                    return {
-                        border: 'border-gentle-warning',
-                        header: 'text-gentle-warning bg-editor-elevated',
-                        indicator: 'bg-gentle-warning'
-                    };
-                case 'error':
-                    return {
-                        border: 'border-gentle-error',
-                        header: 'text-gentle-error bg-editor-elevated',
-                        indicator: 'bg-gentle-error'
-                    };
-                case 'info':
-                    return {
-                        border: 'border-warm-blue',
-                        header: 'text-warm-blue bg-editor-elevated',
-                        indicator: 'bg-warm-blue'
-                    };
-                default:
-                    return {
-                        border: 'border-current',
-                        header: 'text-current-muted bg-editor-sidebar',
-                        indicator: 'bg-current-muted'
-                    };
-            }
-        }
-
-        const statusStyles = getStatusStyles()
-
-        return (
-            <div
-                ref={ref}
-                className={cn(
-                    "border rounded-editor bg-current-surface terminal-transition overflow-hidden",
-                    statusStyles.border,
-                    compact ? "p-3" : "p-0",
-                    className
-                )}
-                {...props}
-            >
-                {showHeader && (
-                    <div className={cn(
-                        "flex items-center justify-between border-b border-current px-3 py-2",
-                        statusStyles.header
-                    )} >
-                        <div className="flex items-center gap-2">
-                            <div className={cn(
-                                "w-2 h-2 rounded-full",
-                                statusStyles.indicator
-                            )} />
-
-                            {icon || <Terminal size={14} className="text-current" />}
-
-                            {title && (
-                                <span className="font-terminal-mono font-code-medium text-sm">
-                                    {title}
-                                </span>
-                            )}
-                        </div>
-                    </div>    
-                )}
-
-                <div className={cn(
-                    "p-4",
-                    compact && "p-3"
-                )}>
-                    {value && (
-                        <div className="mb-2">
-                            <span className="font-terminal-mono font-code-semibold text-2xl text-current">
-                                {value}
-                            </span>
-                        </div>
-                    )}
-
-                    {description && (
-                        <p className="font-terminal-mono text-sm text-current-muted mb-3">
-                            {description}
-                        </p>
-                    )}
-
-                    {children}
-                </div>
-            </div>
-        )
+const TerminalCard = forwardRef<HTMLDivElement, CardProps>(({
+  title,
+  value,
+  description,
+  status = 'default',
+  icon,
+  children,
+  showHeader = true,
+  compact = false,
+  className,
+  ...props
+}, ref) => {
+  // Status-based styling
+  const getStatusClasses = (status: string) => {
+    switch (status) {
+      case 'success':
+        return {
+          text: 'text-gentle-success',
+          hoverBorder: 'hover:border-gentle-success'
+        };
+      case 'warning':
+        return {
+          text: 'text-gentle-warning',
+          hoverBorder: 'hover:border-gentle-warning'
+        };
+      case 'error':
+        return {
+          text: 'text-gentle-error',
+          hoverBorder: 'hover:border-gentle-error'
+        };
+      case 'info':
+        return {
+          text: 'text-gentle-info',
+          hoverBorder: 'hover:border-gentle-info'
+        };
+      default:
+        return {
+          text: 'text-current',
+          hoverBorder: 'hover:border-current'
+        };
     }
-)
+  };
 
-TerminalCard.displayName = 'TerminalCard'
+  const statusClasses = getStatusClasses(status);
+  const iconComponent = icon || <Terminal className="w-4 h-4" />;
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        // Base styles
+        'bg-current-surface border border-current rounded-editor',
+        // Transitions and hover effects
+        'terminal-transition',
+        'hover:shadow-lg hover:-translate-y-0.5',
+        statusClasses.hoverBorder,
+        // Spacing
+        compact ? 'p-3' : 'p-editor',
+        className
+      )}
+      {...props}
+    >
+      {/* Header */}
+      {showHeader && (title || icon) && (
+        <div className={cn(
+          'flex items-center gap-3',
+          compact ? 'mb-2' : 'mb-4'
+        )}>
+          {/* Icon */}
+          <div className={cn(
+            'flex items-center justify-center',
+            statusClasses.text
+          )}>
+            {iconComponent}
+          </div>
+          
+          {/* Title */}
+          {title && (
+            <h3 className={cn(
+              'font-terminal-ui font-medium text-sm',
+              statusClasses.text
+            )}>
+              {title}
+            </h3>
+          )}
+        </div>
+      )}
+
+      {/* Content */}
+      <div className="space-y-2">
+        {/* Value */}
+        {value !== undefined && (
+          <div className={cn(
+            'font-terminal-mono font-semibold',
+            compact ? 'text-lg' : 'text-2xl',
+            'text-current'
+          )}>
+            {value}
+          </div>
+        )}
+
+        {/* Description */}
+        {description && (
+          <p className={cn(
+            'font-terminal-ui text-sm text-current-secondary',
+            'leading-relaxed'
+          )}>
+            {description}
+          </p>
+        )}
+
+        {/* Children for custom content */}
+        {children && (
+          <div className="font-terminal-ui text-current">
+            {children}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+});
+
+TerminalCard.displayName = 'TerminalCard';
+
+export default TerminalCard;

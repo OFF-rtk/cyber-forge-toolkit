@@ -48,8 +48,6 @@ export const useModalStore = create<ModalStore>()(
                 if(get().modals.length === 1) {
                     document.body.style.overflow = 'hidden'
                 }
-
-                return id
             },
 
             closeModal: (id) => {

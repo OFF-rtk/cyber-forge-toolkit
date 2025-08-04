@@ -5,7 +5,7 @@ import { TerminalContainer } from '@/components/ui/TerminalContainer';
 import { TerminalTable } from '@/components/ui/TerminalTable';
 import { TerminalPagination } from '@/components/ui/TerminalPagination';
 import { TerminalBadge } from '@/components/ui/TerminalBadge';
-import { TerminalButton } from '@/components/ui/TerminalButton';
+import TerminalButton from '@/components/ui/TerminalButton';
 import { TerminalAccordian } from '@/components/ui/TerminalAccordian';
 import { TerminalTabs } from '@/components/ui/TerminalTab';
 import { Terminal, Filter } from 'lucide-react';

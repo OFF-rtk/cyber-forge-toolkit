@@ -3,7 +3,7 @@
 import { createPortal } from "react-dom"
 import { useEffect, useState } from "react"
 import { useModalStore } from "@/stores/useModalStore"
-import { Modal } from "./Modal"
+import { Modal } from "./modal"
 
 export function ModalContainer() {
     const { modals } = useModalStore()

@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils'
 import { X, Minimize2, Square } from 'lucide-react'
 import { useModalStore, type Modal } from '@/stores/useModalStore'
 import { useEffect, useState } from 'react'
-import { TerminalButton } from './TerminalButton'
+import TerminalButton from './TerminalButton'
 
 interface ModalProps {
   modal: Modal     

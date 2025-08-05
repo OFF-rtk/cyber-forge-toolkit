@@ -23,7 +23,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
         if (typeof window !== 'undefined' && (window as any).openCommandPalette) {
           (window as any).openCommandPalette();
         }
-      },
+      },  
       isButton: true, // Flag to identify this as a button
       tooltip: 'Open Command Palette (⌘K)'
     },
@@ -44,7 +44,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
       </div>
 
       {/* Page Content */}
-      <main className="bg-black pt-8">
+      <main className="bg-black pt-8 max-w-xl mx-auto md:max-w-7xl pb-8">
         {children}
       </main>
     </div>

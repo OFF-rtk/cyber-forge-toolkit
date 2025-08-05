@@ -105,7 +105,7 @@ export const TerminalNavbar = forwardRef<HTMLElement, TerminalNavbarProps>(
             return (
                 <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
                     <div className={cn(
-                        "bg-current-surface/95 backdrop-blur-md border border-current rounded-full px-6 py-3 shadow-2xl w-auto min-w-96 lg:min-w-7xl",
+                        "bg-current-surface/95 backdrop-blur-md border border-current rounded-full px-6 py-3 shadow-2xl w-auto min-w-2xl lg:min-w-7xl",
                         className
                     )}>
                         <div className="flex items-center justify-between gap-8">

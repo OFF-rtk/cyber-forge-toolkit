@@ -3,6 +3,22 @@
 import { cn } from "@/lib/utils"
 import { forwardRef, ReactNode } from "react"
 import { Minus, Square, X } from "lucide-react"
+import { cva, type VariantProps } from "class-variance-authority"
+
+const containerVariants = cva(
+  "border-rounded overflow-hidden terminal-transition",
+  {
+    variants: {
+      layout: {
+        full: 'w-full',
+        centered: 'mx-auto',
+      },
+    },
+    defaultVariants: {
+      layout: "full"
+    }
+  }
+)
 
 interface TerminalContainerProps {
     title?: string;
@@ -11,6 +27,7 @@ interface TerminalContainerProps {
     showTrafficLights?: boolean;
     variant?: 'default' | 'elevated' | 'panel';
     size?: 'sm' | 'md' | 'lg';
+    layout?: 'full' | 'centered';
 }
 
 export const TerminalContainer = forwardRef<HTMLDivElement, TerminalContainerProps>(
@@ -21,6 +38,7 @@ export const TerminalContainer = forwardRef<HTMLDivElement, TerminalContainerPro
         showTrafficLights = true,
         variant = 'default',
         size = 'md',
+        layout,
         ...props
     }, ref) => {
 
@@ -40,7 +58,7 @@ export const TerminalContainer = forwardRef<HTMLDivElement, TerminalContainerPro
                 case 'sm':
                     return 'max-w-2xl';
                 case 'lg':
-                    return 'max-w-6xl';
+                    return 'max-w-7xl';
                 default:
                     return 'max-w-4xl';
             }
@@ -50,7 +68,7 @@ export const TerminalContainer = forwardRef<HTMLDivElement, TerminalContainerPro
             <div
                 ref={ref}
                 className={cn(
-                    "border rounded-editor overflow-hidden terminal-transition mx-auto",
+                    containerVariants({ layout }),
                     getVariantStyles(),
                     getSizeStyles(),
                     className
